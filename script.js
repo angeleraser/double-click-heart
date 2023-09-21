@@ -26,16 +26,13 @@ function setupHeartEffect(element) {
   area.classList.add("heart-area");
   element.appendChild(area);
 
-  function onDoubleClick(event) {
+  setupDoubleClick(postCard, function (event) {
     insertHeart(area, event);
     likesCount.textContent = likes += 1;
-  }
-
-  element.addEventListener("dblclick", onDoubleClick);
-  setupDoubleTap(postCard, onDoubleClick);
+  });
 }
 
-function setupDoubleTap(element, handler) {
+function setupDoubleClick(element, handler) {
   let taps = 0;
   let tapTimeout;
 
@@ -43,23 +40,14 @@ function setupDoubleTap(element, handler) {
     tapTimeout = setTimeout(() => {
       clearTimeout(tapTimeout);
       taps = 0;
-    }, 300);
+    }, 500);
   };
 
-  element.addEventListener(
-    "click",
-    function (event) {
-      taps += 1;
-
-      if (taps === 2) {
-        clearListener();
-        handler?.(event);
-      }
-    },
-    { passive: true }
-  );
-
-  element.addEventListener("touchend", clearListener, { passive: true });
+  element.addEventListener("click", function (event) {
+    taps += 1;
+    if (taps === 2) handler?.(event);
+    clearListener();
+  });
 }
 
 setupHeartEffect(postCard);
