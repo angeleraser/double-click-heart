@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("./reset.min.css");
+
+:root {
+  --black: #191717;
+  --red: #d80032;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Oswald", sans-serif;
+  padding: 20px;
+  min-height: 100dvh;
+  min-width: 360px;
+  color: var(--black);
+}
+
+.post {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin: 16px 0;
+  position: relative;
+  height: 480px;
+}
+
+.post-image {
+  cursor: pointer;
+  height: 100%;
+}
+
+.post-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.fa-heart {
+  color: var(--red);
+}
+
+.post .heart-area {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.post .fa-heart {
+  display: inline-block;
+  position: absolute;
+  pointer-events: none;
+  animation: heart 0.5s forwards linear;
+  font-size: 32px;
+  margin: auto;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes heart {
+  from {
+    opacity: 1;
+    font-size: 32px;
+  }
+
+  to {
+    opacity: 0;
+    font-size: 128px;
+  }
+}
