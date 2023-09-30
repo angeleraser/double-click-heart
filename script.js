@@ -21,18 +21,7 @@ function insertHeart(element, { offsetX, offsetY }) {
   setTimeout(() => element.removeChild(heart), 1000);
 }
 
-function setupHeartEffect(element) {
-  const area = document.createElement("div");
-  area.classList.add("heart-area");
-  element.appendChild(area);
-
-  setupDoubleClick(postCard, function (event) {
-    insertHeart(area, event);
-    likesCount.textContent = likes += 1;
-  });
-}
-
-function setupDoubleClick(element, handler) {
+function onDoubleClick(element, handler) {
   let taps = 0;
   let tapTimeout;
 
@@ -50,4 +39,9 @@ function setupDoubleClick(element, handler) {
   });
 }
 
-setupHeartEffect(postCard);
+onDoubleClick(postCard, function (event) {
+  const area = document.createElement("div");
+  area.classList.add("heart-area");
+  postCard.appendChild(area);
+  insertHeart(area, event);
+});
