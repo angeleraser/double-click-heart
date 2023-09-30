@@ -43,5 +43,7 @@ onDoubleClick(postCard, function (event) {
   const area = document.createElement("div");
   area.classList.add("heart-area");
   postCard.appendChild(area);
+  likes += 1;
+  likesCount.innerText = likes;
   insertHeart(area, event);
 });
